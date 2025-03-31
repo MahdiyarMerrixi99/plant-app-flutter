@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plant_application/const/constants.dart';
+import 'package:plant_application/screens/root.dart';
 
 // import 'package:plant_application/screens/home_page.dart';
 
@@ -123,7 +124,7 @@ class _HomePageState extends State<SplashScreen> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return ();
+                            return RootPage();
                           },
                         ),
                       );

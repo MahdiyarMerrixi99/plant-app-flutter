@@ -10,6 +10,6 @@ class ScanPage extends StatefulWidget {
 class _ScanPageState extends State<ScanPage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Center(child: Text('hello'));
   }
 }
