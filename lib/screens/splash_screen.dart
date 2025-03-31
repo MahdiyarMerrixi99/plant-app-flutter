@@ -123,7 +123,7 @@ class _HomePageState extends State<SplashScreen> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return Login();
+                            return ();
                           },
                         ),
                       );
@@ -141,15 +141,6 @@ class _HomePageState extends State<SplashScreen> {
         ],
       ),
     );
-  }
-}
-
-class Login extends StatelessWidget {
-  const Login({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar());
   }
 }
 
