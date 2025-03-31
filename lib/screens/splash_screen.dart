@@ -115,7 +115,7 @@ class _HomePageState extends State<SplashScreen> {
                       currentPage++;
                       if (currentPage < 3) {
                         pageController.nextPage(
-                          duration: Duration(seconds: 1),
+                          duration: Duration(microseconds: 300),
                           curve: Curves.easeIn,
                         );
                       }
