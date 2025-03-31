@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:plant_application/screens/home_page.dart';
+import 'package:plant_application/screens/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Plant App',
-      home: HomePage(),
+      home: SplashScreen(),
     );
   }
 }
