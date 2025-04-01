@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:plant_application/const/constants.dart';
+import 'package:plant_application/screens/home_page.dart';
 import 'package:plant_application/screens/root.dart';
 
 // import 'package:plant_application/screens/home_page.dart';
@@ -52,7 +54,15 @@ class _HomePageState extends State<SplashScreen> {
           Padding(
             padding: EdgeInsets.only(top: 20, right: 20),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  PageTransition(
+                    type: PageTransitionType.bottomToTop,
+                    child: RootPage(),
+                  ),
+                );
+              },
               child: Text(
                 'رد کردن',
                 style: TextStyle(

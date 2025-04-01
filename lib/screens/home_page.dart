@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:plant_application/const/constants.dart';
 import 'package:plant_application/models/plant.dart';
+import 'package:plant_application/screens/details_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -124,93 +126,111 @@ class _HomePageState extends State<HomePage> {
                 itemCount: plantList.length,
                 reverse: false,
                 itemBuilder: (context, index) {
-                  return Container(
-                    width: 180,
-                    margin: EdgeInsets.all(18),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Constants.primaryColor.withOpacity(0.5),
-                    ),
-                    child: Stack(
-                      children: [
-                        Positioned(
-                          top: 10,
-                          right: 20,
-                          child: Container(
-                            height: 40,
-                            width: 40,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                plantList[index].isFavorated == true
-                                    ? Icons.favorite
-                                    : Icons.favorite_border_outlined,
-                                color: Constants.primaryColor,
-                                size: 20.0,
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        PageTransition(
+                          type: PageTransitionType.bottomToTop,
+                          child: DetailPage(plantId: plantList[index].plantId),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      width: 180,
+                      margin: EdgeInsets.all(18),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Constants.primaryColor.withOpacity(0.5),
+                      ),
+                      child: Stack(
+                        children: [
+                          Positioned(
+                            top: 10,
+                            right: 20,
+                            child: Container(
+                              height: 40,
+                              width: 40,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(50),
                               ),
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          left: 50.0,
-                          right: 50.0,
-                          top: 50.0,
-                          bottom: 50.0,
-                          child: Image.asset(plantList[index].imageURL),
-                        ),
-                        Positioned(
-                          bottom: 15.0,
-                          left: 20.0,
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 10.0,
-                              vertical: 2.0,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            child: Text(
-                              r'$' + plantList[index].price.toString(),
-                              style: TextStyle(
-                                color: Constants.primaryColor,
-                                fontSize: 16.0,
-                                fontFamily: 'Lalezar',
-                              ),
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          bottom: 15.0,
-                          right: 20.0,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text(
-                                plantList[index].category,
-                                style: const TextStyle(
-                                  fontFamily: 'YekanBakh',
-                                  color: Colors.white70,
-                                  fontSize: 14.0,
+                              child: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    bool isFavorited = toggleIsFavorit(
+                                      plantList[index].isFavorated,
+                                    );
+                                    plantList[index].isFavorated = isFavorited;
+                                  });
+                                },
+                                icon: Icon(
+                                  plantList[index].isFavorated == true
+                                      ? Icons.favorite
+                                      : Icons.favorite_border_outlined,
+                                  color: Constants.primaryColor,
+                                  size: 20.0,
                                 ),
                               ),
-                              Text(
-                                plantList[index].plantName,
-                                style: const TextStyle(
-                                  fontFamily: 'YekanBakh',
-                                  color: Colors.white70,
+                            ),
+                          ),
+                          Positioned(
+                            left: 50.0,
+                            right: 50.0,
+                            top: 50.0,
+                            bottom: 50.0,
+                            child: Image.asset(plantList[index].imageURL),
+                          ),
+                          Positioned(
+                            bottom: 15.0,
+                            left: 20.0,
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 10.0,
+                                vertical: 2.0,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              child: Text(
+                                r'$' + plantList[index].price.toString(),
+                                style: TextStyle(
+                                  color: Constants.primaryColor,
                                   fontSize: 16.0,
-                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Lalezar',
                                 ),
                               ),
-                            ],
+                            ),
                           ),
-                        ),
-                      ],
+                          Positioned(
+                            bottom: 15.0,
+                            right: 20.0,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  plantList[index].category,
+                                  style: const TextStyle(
+                                    fontFamily: 'YekanBakh',
+                                    color: Colors.white70,
+                                    fontSize: 14.0,
+                                  ),
+                                ),
+                                Text(
+                                  plantList[index].plantName,
+                                  style: const TextStyle(
+                                    fontFamily: 'YekanBakh',
+                                    color: Colors.white70,
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 },
@@ -236,83 +256,98 @@ class _HomePageState extends State<HomePage> {
               child: ListView.builder(
                 itemCount: plantList.length,
                 itemBuilder: (context, index) {
-                  return Container(
-                    height: 80,
-                    margin: EdgeInsets.only(bottom: 10, top: 10),
-                    padding: EdgeInsets.only(right: 5),
-                    decoration: BoxDecoration(
-                      color: Constants.primaryColor.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            SizedBox(
-                              height: 20,
-                              child: Image.asset(
-                                'assets/images/PriceUnit-green.png',
-                              ),
-                            ),
-                            SizedBox(width: 5),
-                            Text(
-                              plantList[index].price.toString(),
-                              style: TextStyle(
-                                color: Constants.primaryColor.withOpacity(0.8),
-                                fontSize: 20,
-                                fontFamily: 'lalezar',
-                              ),
-                            ),
-                          ],
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        PageTransition(
+                          type: PageTransitionType.bottomToTop,
+                          child: DetailPage(plantId: plantList[index].plantId),
                         ),
-                        Stack(
-                          clipBehavior: Clip.none,
-                          children: [
-                            Container(
-                              width: 60,
-                              height: 60,
-                              decoration: BoxDecoration(
-                                color: Constants.primaryColor.withOpacity(0.8),
-                                shape: BoxShape.circle,
+                      );
+                    },
+                    child: Container(
+                      height: 80,
+                      margin: EdgeInsets.only(bottom: 10, top: 10),
+                      padding: EdgeInsets.only(right: 5),
+                      decoration: BoxDecoration(
+                        color: Constants.primaryColor.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              SizedBox(
+                                height: 20,
+                                child: Image.asset(
+                                  'assets/images/PriceUnit-green.png',
+                                ),
                               ),
-                            ),
-                            Positioned(
-                              bottom: 5,
-                              right: 5,
-                              left: 5,
-                              child: SizedBox(
-                                height: 75,
-                                child: Image.asset(plantList[index].imageURL),
+                              SizedBox(width: 5),
+                              Text(
+                                plantList[index].price.toString(),
+                                style: TextStyle(
+                                  color: Constants.primaryColor.withOpacity(
+                                    0.8,
+                                  ),
+                                  fontSize: 20,
+                                  fontFamily: 'lalezar',
+                                ),
                               ),
-                            ),
-                            Positioned(
-                              bottom: 5,
-                              right: 70,
+                            ],
+                          ),
+                          Stack(
+                            clipBehavior: Clip.none,
+                            children: [
+                              Container(
+                                width: 60,
+                                height: 60,
+                                decoration: BoxDecoration(
+                                  color: Constants.primaryColor.withOpacity(
+                                    0.8,
+                                  ),
+                                  shape: BoxShape.circle,
+                                ),
+                              ),
+                              Positioned(
+                                bottom: 5,
+                                right: 5,
+                                left: 5,
+                                child: SizedBox(
+                                  height: 75,
+                                  child: Image.asset(plantList[index].imageURL),
+                                ),
+                              ),
+                              Positioned(
+                                bottom: 5,
+                                right: 70,
 
-                              child: Column(
-                                children: [
-                                  Text(
-                                    plantList[index].category,
-                                    style: TextStyle(
-                                      fontFamily: 'yekan',
-                                      fontSize: 13.0,
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      plantList[index].category,
+                                      style: TextStyle(
+                                        fontFamily: 'yekan',
+                                        fontSize: 13.0,
+                                      ),
                                     ),
-                                  ),
-                                  Text(
-                                    plantList[index].plantName,
-                                    style: TextStyle(
-                                      fontFamily: 'yekan',
-                                      fontSize: 18.0,
-                                      color: Constants.blackColor,
+                                    Text(
+                                      plantList[index].plantName,
+                                      style: TextStyle(
+                                        fontFamily: 'yekan',
+                                        fontSize: 18.0,
+                                        color: Constants.blackColor,
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 },
