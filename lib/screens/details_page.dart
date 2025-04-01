@@ -116,7 +116,7 @@ class _DetailPageState extends State<DetailPage> {
                   ),
                   Positioned(
                     top: 10,
-                    left: 30,
+                    left: 10,
                     child: SizedBox(
                       height: 350,
                       child: Image.asset(planList[widget.plantId].imageURL),
