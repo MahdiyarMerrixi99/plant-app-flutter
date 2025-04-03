@@ -1,0 +1,6 @@
+{
+    "editor.multiCursorModifier": "alt",
+    "editor.insertSpaces": true,
+    "editor.cursorBlinking": "expand",
+    "editor.cursorSmoothCaretAnimation": "on"
+}

@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   animated_bottom_navigation_bar: ^1.1.0+1
   page_transition: ^2.0.9
+  mobile_scanner: ^6.0.7
   
  
 
