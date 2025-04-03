@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:plant_application/const/constants.dart';
 import 'package:plant_application/models/plant.dart';
+import 'package:plant_application/screens/root.dart';
 import 'package:plant_application/widget/extensions.dart';
 
 class DetailPage extends StatefulWidget {
@@ -266,6 +266,13 @@ class _DetailPageState extends State<DetailPage> {
                 child: Center(
                   child: InkResponse(
                     onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return RootPage();
+                          },
+                        ),
+                      );
                       setState(() {
                         bool selected = isSelected(
                           planList[widget.plantId].isSelected,
