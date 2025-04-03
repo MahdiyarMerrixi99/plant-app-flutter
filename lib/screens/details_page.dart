@@ -272,13 +272,22 @@ class _DetailPageState extends State<DetailPage> {
                         );
                         planList[widget.plantId].isSelected = selected;
                       });
-                      // Navigator.push(
-                      //   context,
-                      //   PageTransition(
-                      //     type: PageTransitionType.bottomToTop,
-                      //     child: RootPage(),
-                      //   ),
-                      // );
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Row(
+                            children: <Widget>[
+                              Text('plant added to your cart'),
+                              Icon(Icons.shopping_cart, color: Colors.white),
+                            ],
+                          ),
+                          behavior: SnackBarBehavior.floating,
+                          duration: Duration(seconds: 1),
+                          backgroundColor: Constants.primaryColor.withOpacity(
+                            0.7,
+                          ),
+                          elevation: 8,
+                        ),
+                      );
                     },
                     child: const Text(
                       'افزوددن به سبد خرید',
