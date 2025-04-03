@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:plant_application/const/constants.dart';
 import 'package:plant_application/models/plant.dart';
+import 'package:plant_application/screens/cart_page.dart';
+import 'package:plant_application/screens/root.dart';
 import 'package:plant_application/widget/extensions.dart';
 
 class DetailPage extends StatefulWidget {
@@ -14,6 +17,14 @@ class DetailPage extends StatefulWidget {
 class _DetailPageState extends State<DetailPage> {
   bool toggleIsFavorit(bool isFavorites) {
     return !isFavorites;
+  }
+
+  bool isSelected(bool boolValue) {
+    // return !boolValue;
+    if (boolValue == false) {
+      return !boolValue;
+    }
+    return boolValue;
   }
 
   @override
@@ -255,12 +266,29 @@ class _DetailPageState extends State<DetailPage> {
                   ],
                 ),
                 child: Center(
-                  child: const Text(
-                    'افزودن به سبد خرید',
-                    style: TextStyle(
-                      fontFamily: 'Lalezar',
-                      color: Colors.white,
-                      fontSize: 20.0,
+                  child: InkResponse(
+                    onTap: () {
+                      setState(() {
+                        bool selected = isSelected(
+                          planList[widget.plantId].isSelected,
+                        );
+                        planList[widget.plantId].isSelected = selected;
+                      });
+                      // Navigator.push(
+                      //   context,
+                      //   PageTransition(
+                      //     type: PageTransitionType.bottomToTop,
+                      //     child: RootPage(),
+                      //   ),
+                      // );
+                    },
+                    child: const Text(
+                      'افزوددن به سبد خرید',
+                      style: TextStyle(
+                        fontFamily: 'Lalezar',
+                        color: Colors.white,
+                        fontSize: 20.0,
+                      ),
                     ),
                   ),
                 ),
