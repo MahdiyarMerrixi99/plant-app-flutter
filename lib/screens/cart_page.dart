@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:plant_application/const/constants.dart';
 import 'package:plant_application/models/plant.dart';
+import 'package:plant_application/widget/extensions.dart';
 import 'package:plant_application/widget/plant_widget.dart';
 
 class CartPage extends StatefulWidget {
@@ -89,7 +90,7 @@ class _CartPageState extends State<CartPage> {
                                 ),
                                 const SizedBox(width: 5.0),
                                 Text(
-                                  sumPrices().toString(),
+                                  sumPrices().toString().farsiNumber,
                                   style: TextStyle(
                                     fontFamily: 'Lalezar',
                                     color: Constants.primaryColor,

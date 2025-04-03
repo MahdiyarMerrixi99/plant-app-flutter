@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
+
 import 'package:plant_application/const/constants.dart';
 import 'package:plant_application/models/plant.dart';
-import 'package:plant_application/screens/cart_page.dart';
-import 'package:plant_application/screens/root.dart';
 import 'package:plant_application/widget/extensions.dart';
 
 class DetailPage extends StatefulWidget {
